@@ -6,7 +6,7 @@ const Header = ({ user, isAdmin }) => (
     <div>Tech Giants Chat Bot</div>
     <div className="userInfo">
       <div>Welcome {user?.displayName || user?.email || 'Guest'}!</div>
-      {isAdmin && <div className="adminText">(You are logged in as Admin)</div>}
+      {isAdmin && <div className="adminText">(You are logged in as an Admin)</div>}
     </div>
   </div>
 )
