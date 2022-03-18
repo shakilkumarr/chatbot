@@ -1,0 +1,9 @@
+.main {
+  width: 70%;
+  background: white;
+  height: calc(100% - 32px);
+  border-radius: 8px;
+  border: 1px solid #aede9b;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
