@@ -65,7 +65,7 @@ const AddCommands = () => {
         Add Commands
       </Button>
       <Modal
-        title="Basic Modal"
+        title="Add Commands"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
