@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useAuthState } from "react-firebase-hooks/auth";
-import _filter from 'lodash/filter';
 import { query, getDocs, collection } from "firebase/firestore"; 
 
 import { auth, db } from "../auth/firebase";
