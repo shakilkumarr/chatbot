@@ -40,6 +40,7 @@ const Home = () => {
   }
 
   const handleLoginSuccess = () => {
+    if (commands.length) return;
     updateAdminStatus();
     updateCommands();
   }
