@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useAuthState } from "react-firebase-hooks/auth";
-import axios from 'axios';
+import _filter from 'lodash/filter';
 import { doc, query, where, getDocs, collection, addDoc } from "firebase/firestore"; 
 
 import { auth, db } from "../auth/firebase";
@@ -40,7 +40,8 @@ const Home = () => {
     const updatedCommands = [];
 
     querySnapshot.forEach((doc) => {
-      updatedCommands.push(doc.data());
+      const currData = doc.data();
+      Object.keys(currData).length && updatedCommands.push(currData);
     });
     setCommands(updatedCommands)
   }
@@ -61,7 +62,7 @@ const Home = () => {
         </div>
         <div className="main">
           {isAdmin && <div className="adminBtn"><AddCommands /></div>}
-          <ChatBot name={user?.displayName || 'Guest'}/>
+          <ChatBot name={user?.displayName || 'Guest'} commands={commands}/>
         </div>
       </div>
     </div>
