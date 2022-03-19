@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useAuthState } from "react-firebase-hooks/auth";
 import _filter from 'lodash/filter';
-import { doc, query, where, getDocs, collection, addDoc } from "firebase/firestore"; 
+import { query, getDocs, collection } from "firebase/firestore"; 
 
 import { auth, db } from "../auth/firebase";
 import Header from '../components/Header';

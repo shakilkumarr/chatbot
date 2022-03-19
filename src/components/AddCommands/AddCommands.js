@@ -1,6 +1,6 @@
 import { Modal, Button, Input } from 'antd';
 import { useState } from 'react';
-import { doc, query, where, getDocs, collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore"; 
 
 import { auth, db } from "../../auth/firebase";
 
