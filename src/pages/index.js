@@ -19,30 +19,38 @@ const Home = () => {
   useEffect(() => {
     if (loading) return;
     if (!user) return router.push("/login");
-    axios.get(`/api/isAdmin?email=${user.email}`)
-      .then((res) => {
-        setAdminStatus(res.data.data);
-      })
-    axios.get('/api/getCommands')
-      .then(res => setCommands(res.data.data));
-    handleSuccess();
+    handleLoginSuccess();
   }, [user, loading]);
 
-  const handleSuccess = async () => {
-    const q = query(collection(db, "admin_email"));
-    const querySnapshot = await getDocs(q);
+  const updateAdminStatus = async () => {
+    const emailStatement = query(collection(db, "admin_email"));
+    const querySnapshot = await getDocs(emailStatement);
+    let isCurrUserAdmin = false;
 
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-    });
-
-    // await addDoc(collection(db, "commands"), {
-    //   key: ["your name","name","ur name","what is your name?", "who are you?"],
-    //   value: "I am a Chatbot! Designed by Kongunadu College of Engineering and Technology",
-    //   quest: 'whatis your name?',
-    // })
+      const currUser = doc.data();
+      if (currUser[user.email]) isCurrUserAdmin = true;
+    })
+    setAdminStatus(isCurrUserAdmin);
   }
+
+  const updateCommands = async () => {
+    const cmdStatement = query(collection(db, "commands"));
+    const querySnapshot = await getDocs(cmdStatement);
+    const updatedCommands = [];
+
+    querySnapshot.forEach((doc) => {
+      updatedCommands.push(doc.data());
+    });
+    setCommands(updatedCommands)
+  }
+
+  const handleLoginSuccess = () => {
+    updateAdminStatus();
+    updateCommands();
+  }
+
+  console.log(commands);
 
   return (
     <div className="parent">
@@ -52,8 +60,8 @@ const Home = () => {
           <Image className="m100" src="/bot.png" width={500} height={500}/>
         </div>
         <div className="main">
-          {/* <ChatBot name={user?.displayName || 'Guest'}/> */}
-          <AddCommands />
+          {isAdmin && <div className="adminBtn"><AddCommands /></div>}
+          <ChatBot name={user?.displayName || 'Guest'}/>
         </div>
       </div>
     </div>

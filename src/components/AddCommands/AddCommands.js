@@ -44,15 +44,15 @@ const AddCommands = () => {
     return (
       <div className={styles.body}>
         <div className={styles.row}>
-          <div className='label'>Key</div>
+          <div className={styles.label}>Key</div>
           <Input value={key} onChange={ev => setKey(ev.target.value)} />
         </div>
         <div className={styles.row}>
-          <div className='label'>Value</div>
+          <div className={styles.label}>Value</div>
           <Input value={value} onChange={ev => setValue(ev.target.value)} />
         </div>
         <div className={styles.row}>
-          <div className='label'>Question</div>
+          <div className={styles.label}>Question</div>
           <Input value={quest} onChange={ev => setQuest(ev.target.value)} />
         </div>
       </div>
@@ -62,10 +62,10 @@ const AddCommands = () => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Add Commands
+        Add New Keywords
       </Button>
       <Modal
-        title="Add Commands"
+        title="Add Keywords"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}

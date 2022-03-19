@@ -75,8 +75,15 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  padding: 12px;
 }
 
 .m100 {
   max-width: 100%;
+}
+
+.adminBtn {
+  align-self: flex-end;
+  padding-bottom: 4px;
 }
