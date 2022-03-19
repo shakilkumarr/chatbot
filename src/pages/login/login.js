@@ -12,13 +12,14 @@ import styles from './login.module.css';
 const Login = () => {
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
+  console.log(user, loading, error);
   useEffect(() => {
+    if (error) alert('You are not authorised!');
     if (loading) {
-      console.log('LOADING');
       return;
     }
     if (user) router.push('/');
-  }, [user, loading, router]);
+  }, [user, loading, router, error]);
 
   return (
     <div className="parent">
