@@ -57,9 +57,19 @@ a {
   align-items: center;
 }
 
+.userInfo div {
+  font-weight: 500;
+}
+
 .adminText {
   font-style: italic;
   font-size: 8px;
+}
+
+.title {
+  font-size: 19px;
+  color: #0b0b81;
+  font-weight: 500;
 }
 
 .sidebar {
