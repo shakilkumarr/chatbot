@@ -12,7 +12,8 @@ const ChatBot = ({ name, commands }) => {
   const scrollContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    scrollContainerRef.current?.scrollTop = scrollContainerRef.current?.scrollHeight;
+    if (!scrollContainerRef.current) return;
+    scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
   };
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const ChatBot = ({ name, commands }) => {
   const renderEmpty = () => (
     <div className={styles.empty}>
       <div>Please go ahead and ask something.</div>
-      <div>I'm here to help you!</div>
+      <div>I am here to help you!</div>
     </div>
   );
 

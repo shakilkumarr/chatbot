@@ -16,12 +16,6 @@ const Home = () => {
   const [isAdmin, setAdminStatus] = useState(true);
   const [commands, setCommands] = useState([]);
 
-  useEffect(() => {
-    if (loading) return;
-    if (!user) return router.push("/login");
-    handleLoginSuccess();
-  }, [user, loading]);
-
   const updateAdminStatus = async () => {
     const emailStatement = query(collection(db, "admin_email"));
     const querySnapshot = await getDocs(emailStatement);
@@ -51,14 +45,18 @@ const Home = () => {
     updateCommands();
   }
 
-  console.log(commands);
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return router.push("/login");
+    handleLoginSuccess();
+  }, [user, loading, handleLoginSuccess, router]);
 
   return (
     <div className="parent">
       <Header user={user} isAdmin={isAdmin} />
       <div className="body">
         <div className="sidebar">
-          <Image className="m100" src="/bot.png" width={500} height={500}/>
+          <Image className="m100" src="/bot.png" alt="bot-img" width={500} height={500}/>
         </div>
         <div className="main">
           {isAdmin && <div className="adminBtn"><AddCommands /></div>}

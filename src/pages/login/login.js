@@ -18,7 +18,7 @@ const Login = () => {
       return;
     }
     if (user) router.push('/');
-  }, [user, loading]);
+  }, [user, loading, router]);
 
   return (
     <div className="parent">
